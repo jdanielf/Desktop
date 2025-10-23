@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Primeiro projeto</title>
-    <!--<link rel = "stylesheet" herf = "estilo.css"> CSS externo-->
+    <!--<link rel = "stylesheet" herf = "estilo.css"> CSS externo--> para puchar o estilo de outro arvivo, porem tem que apagar tudo que estiver entre style
     <!-- CSS Interno -->
     
     <style>
@@ -30,37 +30,24 @@
 
   <label for="nome">Nome:</label>
   <input type="text" id ="nome" placeholder="Digite seu nome"> 
+  <button id = "botao" onclick="pegarNome()"> Enviar </button>
+  <button onclick="limparButton()"> Limpar </button> 
   <p id="texto"> </p>
-   <button id = "botao" onclick="pegarNome()"> Enviar </button>
   
    <br><br>
 
    <label for="num">Número:</label>
   <input type="text" id ="num" placeholder="Digite números"> 
+  <button id = "botao2" onclick="pegarNumero()"> Enviar </button>
+  <button onclick="limparButton()"> Limpar </button> 
   <p id="texto2"> </p>
-   <button id = "botao2" onclick="pegarNumero()"> Enviar </button>
+  <br><br>
+   <a href="atividade2.html"><button>Atividade 2</button></a>
+  
 
    <!-- <script src="funcao.js"/> -->
-    <script >
-      function pegarNome(){
-      let conteudo = document.getElementById("nome").value
-        alert("Olá, " + conteudo )
-        document.getElementById("nome").value = ""
-        document.getElementById("texto").innerHTML = "Bem-vindo, " + conteudo + "!"
-      }
-
-  
-      function pegarNumero(){
-      let numero= document.getElementById("num").value
+    <script src="funcao.js" >
      
-       if(numero>0){
-        document.getElementById("texto2").innerHTML = "Os números positivos são = " + numero +"!"
-       }else{
-        document.getElementById("texto2").innerHTML = "Os números negativos são = " + numero +"!"
-       }
-      
-      
-      }   
 
     </script>
    
