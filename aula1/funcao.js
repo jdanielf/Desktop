@@ -12,6 +12,11 @@
         document.getElementById("nome").value = ""
         document.getElementById("atividade").innerHTML = ""
         document.getElementById("prova").innerHTML = ""
+        
+      }
+      function limpar(){
+        document.getElementById("cel").value = ""
+      document.getElementById("resultado").innerHTML = ""
       }
 
   
@@ -48,8 +53,26 @@
       }
 
 
-      function temp(){ 
-       let kel= cel + 273,15
-
-
+      function tempk(){ 
+       let cel= parseFloat(document.getElementById("cel").value)
+       if(isNaN(cel)){
+        alert("Por favor, insira um valor numérico válido para Celsius.")
+        return
+       }
+       let kel= cel + 273.15
+        alert(`A temperatura é ${kel.toFixed(2)}k`  )
+        document.getElementById("resultado").innerHTML = `A temperatura é ${kel.toFixed(2)}k`
+         
       }
+       function tempf(){ 
+        let cel= parseFloat(document.getElementById("cel").value)
+        if(isNaN(cel)){
+         alert("Por favor, insira um valor numérico válido para Celsius.")
+         return
+        }
+       let fah= (cel * 1.8) + 32
+       alert(`A temperatura é ${fah.toFixed(2)}ºF`)
+        document.getElementById("resultado").innerHTML = `A temperatura é ${fah.toFixed(2)}ºF`
+        
+
+       }
