@@ -54,7 +54,7 @@
 
 
       function tempk(){ 
-       let cel= Number(document.getElementById("cel").value)
+       let cel=  er(document.getElementById("cel").value)
        if(isNaN(cel)){
         alert("Por favor, insira um valor numérico válido para Celsius.")
         return
