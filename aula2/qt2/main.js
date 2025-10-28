@@ -10,7 +10,7 @@ const criaJanela = () =>{
         //  icon:'com.png'
 
         })
-janela.loadFile('qt1.html')
+janela.loadFile('qt2.html')
 }
 app.whenReady().then(()=>{criaJanela() 
     console.log("Executando elecreton")})
