@@ -16,7 +16,7 @@ app.whenReady().then(()=>{criaJanela()
     console.log("Executando elecreton")})
     .catch((erro)=>{ 
         console.log(erro)
-   })
+   }) 
 
 
 
