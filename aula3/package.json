@@ -5,7 +5,11 @@
   "type":"module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+<<<<<<< HEAD:aula3/package.json
     "start": "electronmon main.js"
+=======
+    "start": "electron main.js"
+>>>>>>> 832fb9a1e09da186ea4081c22b9cf558ae37dab8:aula2/qt2/package.json
   },
   "keywords": [],
   "author": "",

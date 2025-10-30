@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding-top: 40px;
+      background-color: #f4f4f4;
+    }
+
+    label {
+      display: block;
+      margin-top: 10px;
+    }
+
+    input {
+      margin-bottom: 10px;
+      padding: 5px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      margin-top: 15px;
+      padding: 8px 16px;
+      border: none;
+      border-radius: 8px;
+      background-color: #007bff;
+      color: white;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    
+    .alerta {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-color: rgba(0,0,0,0.6);
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+    }
+
+    .alerta-conteudo {
+      background: white;
+      border-radius: 15px;
+      padding: 20px;
+      width: 300px;
+      text-align: center;
+      box-shadow: 0 0 15px rgba(0,0,0,0.3);
+      animation: aparecer 0.3s ease;
+    }
+
+    @keyframes aparecer {
+      from { transform: scale(0.8); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    .alerta img {
+      width: 80px;
+      height: 80px;
+      margin-bottom: 15px;
+      border-radius: 50%;
+    }
+
+    .btn-fechar {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .btn-fechar:hover {
+      background-color: #0056b3;
+    }
+
+    .aprovado h2 { color: green; }
+    .recuperacao h2 { color: orange; }
+    .reprovado h2 { color: red; }
+    </style>
+
+</head>
+<body>
+    <h1>Calculadora Anual</h1>
+    <h1>Para saber sua média Anula digite suas notas</h1>
+    <label for="nota1">Nota do 1º bimestre - :</label>
+    <input type="number" id="nota1" placeholder="">
+    <br>
+    <label for="nota2">Nota do 2º bimestre - :</label>
+    <input type="number" id="nota2" placeholder="">     
+    <br>
+    <label for="nota3">Nota do 3º bimestre - :</label>        
+    <input type="number" id="nota3" placeholder="">
+    <br>
+    <label for="nota4">Nota do 4º bimestre - :</label>
+    <input type="number" id="nota4" placeholder="">
+    <br><br>
+    <button onclick="calcularMedia()"> Calcular Média Anual </button>
+    <p id="resultado"></p>
+    
+     <div id="alerta" class="alerta">
+    <div id="alerta-conteudo" class="alerta-conteudo">
+      <img id="alerta-img" src="">
+      <h2 id="alerta-titulo"></h2>
+      <p id="alerta-mensagem"></p>
+      <br>
+      <button onclick="limparCampos()">Limpar Campos</button>
+      <button class="btn-fechar" onclick="fecharAlerta()">Fechar</button>
+
+    </div>
+  </div>
+
+    <script src="funcao.js">
+
+    </script>
+    
+</body>
+</html>
