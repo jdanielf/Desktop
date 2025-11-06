@@ -47,7 +47,7 @@ function libra(){
     alert("Insira um valor em Reais.")
     return
   }if(isNaN(document.getElementById("real").value)){
-    alert("Insiransira um valor válido .")
+    alert("Insira um valor válido .")
     return
   }
       let real = Number(document.getElementById("real").value)

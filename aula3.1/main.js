@@ -6,6 +6,8 @@ const __filename = fileURLToPath(import.meta.url) // file:////c:/senac
 const __dirname = path.dirname(__filename) // c:/senac/
 
 let janela = null 
+let janelaMen = null
+
 
 function criarJanela(){
     nativeTheme.themeSource = 'light' // modo claro/escuro da janela
@@ -22,6 +24,7 @@ function criarJanela(){
         }
     })
     janela.loadFile('calculadora.html') 
+    
     // janela.webContents.openDevTools()
     //janela.webContents.setZoomFactor(1) //deixando o zoom em 100%
     
@@ -32,10 +35,41 @@ function criarJanela(){
     }) 
 }
 
+function criarJanela2(){
+    nativeTheme.themeSource = 'light' // modo claro/escuro da janela
+   janelaMen = new BrowserWindow({ 
+        width: 800, height: 800,
+        title: "Aplicação Desktop",       
+        webPreferences: {
+            nodeIntegration: false,           
+            contextIsolation: true,
+            devTools: true,
+            preload: path.join(__dirname,'preload.js'),
+            sandbox: false,
+            setZoomFactor: 1.0 //deixando o zoom em 100%
+        }
+    })
+    
+    janelaMen.loadFile(`mensagem.html`)
+    // janela.webContents.openDevTools()
+    //janela.webContents.setZoomFactor(1) //deixando o zoom em 100%
+    
+    janelaMen.removeMenu() //remover menu padrão do electron
+
+  janelaMen.webContents.on('did-finish-load', () => { //evento disparado quando a janela termina de carregar
+        janelaMen.webContents.setZoomFactor(1.0) 
+    }) 
+}
+
 app.whenReady().then(() => { 
         criarJanela()
+        // criarJanela2()
 
 })
+
+// app.whenReady().then(() => {
+//     criarJanela()
+// })
   
 app.on('window-all-closed', () => {
     if(process.platform !== 'darwin'){
@@ -64,16 +98,17 @@ ipcMain.on('mudar-zoom-menos', () => { //recebe o evento do renderer para diminu
 })
 
 ipcMain.on('criar-janela', () => { //recebe o evento do renderer para criar uma nova janela
-    criarJanela()
+    criarJanela2()
 })
 
 ipcMain.handle('calc-soma', (event, n1 , n2) => { // recebe o evento do renderer para calcular a soma
     return n1+n2
 })
-
+let historicomen = []
 ipcMain.on('envia-msg', (event, msg) => { //recebe o evento do renderer com uma mensagem
-    console.log('Mensagem do Renderer: ', msg)
-    event.reply('devolver-msg', 'Olá') //envia uma mensagem de volta para o renderer
+    historicomen.push(msg)
+    console.log('Mensagem do Renderer: ', historicomen)
+    event.reply('devolver-msg', historicomen) //envia uma mensagem de volta para o renderer
 })
 
 ipcMain.on('calc-soma-result', (event, resultado) => {

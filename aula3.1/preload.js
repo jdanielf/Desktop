@@ -16,6 +16,7 @@ contextBridge.exposeInMainWorld('api', {
 
     enviarMsg: (msg) => ipcRenderer.send('envia-msg',msg),
     receberMsg: (msg) => ipcRenderer.on('devolver-msg', msg) ,
+    
     historicoResultRet: (historico) => ipcRenderer.on('calc-result', historico),  
     historicoSoma: (historico) => ipcRenderer.send('calc-soma-result', historico)    
 })
