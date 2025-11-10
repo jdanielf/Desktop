@@ -89,7 +89,7 @@ function enviarMsg() {
 }
 
 window.api.receberMsg((event, msg) => {
-        document.getElementById('msg2').innerHTML = `${msg}<br>`
+        document.getElementById('msg2').innerHTML =  msg + "\n"
 })
 
 function historicoSoma() {

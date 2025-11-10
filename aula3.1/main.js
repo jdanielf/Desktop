@@ -1,4 +1,4 @@
-import {app, BrowserWindow, nativeTheme, ipcMain} from 'electron'
+import {app, BrowserWindow, nativeTheme, ipcMain, Menu} from 'electron'
 import path from 'node:path'
 import {fileURLToPath} from 'node:url'
 
@@ -33,7 +33,40 @@ function criarJanela(){
     janela.webContents.on('did-finish-load', () => { //evento disparado quando a janela termina de carregar
         janela.webContents.setZoomFactor(1.0) 
     }) 
+
+    Menu.setApplicationMenu(Menu.buildFromTemplate(template)) //definindo o menu da aplicação
 }
+const template = [
+    { label: "Aplicação",
+        submenu: [ 
+            { label: "Novo", click: () => { criarJanela() } },
+            { type: "separator"},
+            { label: "Sair", role: "quit" }]} ,
+    { label: "Sobre"},
+    { label: "Exibir",
+        submenu: [{label: "Aparência",
+            submenu: [
+                { label: "Zoom +" , type: "radio", checked: false, 
+                    click: () => { let janelaatual = janela.webContents.getZoomFactor()
+                     janela.webContents.setZoomFactor(0.1 + janelaatual) },
+                    accelerator: "ctrl + = " , },
+                    {label: "Zoom -", role: "zoomout"},
+                    {label: "Trocar tema", type: "checkbox", checked: false,
+                    click: () =>  
+                    {
+                        if(nativeTheme.themeSource === 'dark'){
+                            nativeTheme.themeSource = 'light'
+                        }else{
+                            nativeTheme.themeSource = 'dark'
+                        }}}
+            ]}]
+        }
+    
+    ]  
+
+
+
+
 
 function criarJanela2(){
     nativeTheme.themeSource = 'light' // modo claro/escuro da janela
