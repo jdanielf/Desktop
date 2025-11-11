@@ -1,4 +1,5 @@
 import {app, BrowserWindow, nativeTheme, ipcMain, Menu} from 'electron'
+import { type } from 'node:os'
 import path from 'node:path'
 import {fileURLToPath} from 'node:url'
 
@@ -28,7 +29,7 @@ function criarJanela(){
     // janela.webContents.openDevTools()
     //janela.webContents.setZoomFactor(1) //deixando o zoom em 100%
     
-    janela.removeMenu() //remover menu padrão do electron
+    // janela.removeMenu() //remover menu padrão do electron
 
     janela.webContents.on('did-finish-load', () => { //evento disparado quando a janela termina de carregar
         janela.webContents.setZoomFactor(1.0) 
@@ -51,16 +52,31 @@ const template = [
                      janela.webContents.setZoomFactor(0.1 + janelaatual) },
                     accelerator: "ctrl + = " , },
                     {label: "Zoom -", role: "zoomout"},
+                    {type: "separator"},
                     {label: "Trocar tema", type: "checkbox", checked: false,
                     click: () =>  
                     {
                         if(nativeTheme.themeSource === 'dark'){
                             nativeTheme.themeSource = 'light'
                         }else{
-                            nativeTheme.themeSource = 'dark'
-                        }}}
+                            nativeTheme.themeSource = 'dark'}}},
+                    {type:"separator"},
+                    {label: "Tela cheia", role: "togglefullscreen" },
+                    {type:"separator"},
+                    { label: "Redimensionável", role: "toggleResizable" }
+
             ]}]
-        }
+        },
+    {label: "Ferramenta",
+            submenu: [
+                    {label:"Desenvolvedor", role: "toggleDevTools" }
+
+            ]},
+    {label:"Ajuda",
+        submenu: [{label:"Sobre", role: "about"
+        }]
+    }
+        
     
     ]  
 
