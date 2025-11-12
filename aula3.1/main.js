@@ -36,6 +36,10 @@ function criarJanela(){
     }) 
 
     Menu.setApplicationMenu(Menu.buildFromTemplate(template)) //definindo o menu da aplicação
+
+    janela.webContents.on("context-menu", ()=> {
+        Menu.buildFromTemplate(template).popup({window:janela})
+    })
 }
 const template = [
     { label: "Aplicação",
@@ -53,7 +57,7 @@ const template = [
                     accelerator: "ctrl + = " , },
                     {label: "Zoom -", role: "zoomout"},
                     {type: "separator"},
-                    {label: "Trocar tema", type: "checkbox", checked: false,
+                    {label: "Trocar tema", type: "checkbox", checked: false, accelerator: "ctrl + T",	
                     click: () =>  
                     {
                         if(nativeTheme.themeSource === 'dark'){
@@ -73,7 +77,9 @@ const template = [
 
             ]},
     {label:"Ajuda",
-        submenu: [{label:"Sobre", role: "about"
+        submenu: [{label:"Sobre", click: () => {
+            criarJanela2()
+        }
         }]
     }
         
@@ -87,11 +93,11 @@ const template = [
 function criarJanela2(){
     nativeTheme.themeSource = 'light' // modo claro/escuro da janela
    janelaMen = new BrowserWindow({ 
-        width: 800, height: 800,
+        width: 400, height: 400,
         title: "Aplicação Desktop",       
         webPreferences: {
-            nodeIntegration: false,           
-            contextIsolation: true,
+            nodeIntegration: true,           
+            contextIsolation: false,
             devTools: true,
             preload: path.join(__dirname,'preload.js'),
             sandbox: false,
@@ -103,12 +109,11 @@ function criarJanela2(){
     // janela.webContents.openDevTools()
     //janela.webContents.setZoomFactor(1) //deixando o zoom em 100%
     
-    janelaMen.removeMenu() //remover menu padrão do electron
-
-  janelaMen.webContents.on('did-finish-load', () => { //evento disparado quando a janela termina de carregar
-        janelaMen.webContents.setZoomFactor(1.0) 
-    }) 
+   
+  
 }
+
+
 
 app.whenReady().then(() => { 
         criarJanela()

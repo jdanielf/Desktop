@@ -1,5 +1,5 @@
 // console.log(`SO - ${process.platform}`)
-// console.log(`ELECTRON - ${process.versions.electron}`)
+// console.log(`ELECTRON - ${pro cess.versions.electron}`)
 // console.log(`NODE - ${process.versions.node}`)
 
 console.log(`${window.api.versaoNode()}`)
@@ -109,3 +109,7 @@ document.getElementById("historico").addEventListener("click", ()=>{
                 result.forEach((op)=>  document.getElementById("historicoResult").innerHTML+= `${op}<br>`)
         })
 })
+document.getElementById("configuracoes").addEventListener('DOMContentLoaded',()=>{
+document.getElementById("configuracoes").innerHTML += `ELECTRON - ${process.versions.electron}`
+}
+)
