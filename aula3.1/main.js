@@ -1,4 +1,4 @@
-import {app, BrowserWindow, nativeTheme, ipcMain, Menu} from 'electron'
+import {app, BrowserWindow, nativeTheme, ipcMain, Menu, dialog, Notification} from 'electron'
 import { type } from 'node:os'
 import path from 'node:path'
 import {fileURLToPath} from 'node:url'
@@ -40,6 +40,20 @@ function criarJanela(){
     janela.webContents.on("context-menu", ()=> {
         Menu.buildFromTemplate(template).popup({window:janela})
     })
+
+    dialog.showMessageBox({
+            type: 'none', 
+            title: 'Electron',
+            message: 'A aplicação foi iniciada!'
+        })
+
+        //criação de uma notificação
+        new Notification({
+            title: 'Electron',
+            body: 'Aplicação Iniciada!',
+            silent: false
+        }).show()
+        
 }
 const template = [
     { label: "Aplicação",
