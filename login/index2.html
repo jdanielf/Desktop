@@ -6,8 +6,13 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>INDEX 2</h1>
+    <h1 id="perfil">INDEX 2</h1>
     <a href="index.html">Voltar</a>
+
+<SCRIpt>
+    document.getElementById('perfil').innerHTML =
+     `Bem-vindo ${localStorage.getItem('usuario')}!` //recupera o dado
+</SCRIpt>
     
 </body>
 </html>

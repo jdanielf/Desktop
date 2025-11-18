@@ -1,6 +1,6 @@
 import {contextBridge, ipcRenderer} from 'electron'
 
 contextBridge.exposeInMainWorld('api', {
-cadastro:()=> ipcRenderer.invoke('cadrastro-login',login)
+cadastro:(login)=> ipcRenderer.invoke('cadastro-login',login)
     
 })

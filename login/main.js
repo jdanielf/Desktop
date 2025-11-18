@@ -20,14 +20,13 @@ function criarJanela(){
             sandbox: false,
            
         }
-    })}
+    })
 
-    janela.loadFile('calculadora.html') 
+    janela.loadFile('index.html') 
     // janela.webContents.openDevTools()
     
-    
     janela.removeMenu() //remover menu padrão do electron
-
+}
 
     app.whenReady().then(() => { 
 
@@ -35,7 +34,25 @@ function criarJanela(){
             
     
     })
-    ipcMain.handle('cadrastro-login', (event, login) =>{
+
+    // let usuarios = []
+
+    ipcMain.handle('cadastro-login', (event, login) =>{
+    //    usuarios.push(login)
         console.log(login)
-        return login.nome
+if(login.nome === "senac" && login.senha === "senac123"){  
+        dialog.showMessageBox({
+            type: 'info',
+            title: 'Login',
+            message: 'Login realizado com sucesso!'
+        })
+    return login.nome
+    }else{
+    dialog.showMessageBox({
+        type: 'error',
+        title: 'Login',
+        message: 'Login ou senha incorretos!'
+    })
+
+    }
     })
