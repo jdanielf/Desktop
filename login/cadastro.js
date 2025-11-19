@@ -8,9 +8,9 @@ document.getElementById('cadastrar').addEventListener('click', () => {
     let senha = document.getElementById("senha").value
    
     
-   window.api.cadastro({nome,senha,cpf,telefone,bairro,rua,numero})// enviando os adados para o main.js
+//    window.api.cadastro({nome,senha,cpf,telefone,bairro,rua,numero})// enviando os adados para o main.js
    //recebendo a resposta do main.js 
-   window.api.cadastro({nome,senha,cpf,telefone,bairro,rua,numero}).then((result) => {
+   window.api.cadastro({nome,cpf,telefone,bairro,rua,numero,senha}).then((result) => {
     if(result){
        window.location.href = 'index.html'
     }
