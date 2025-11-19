@@ -6,12 +6,14 @@ document.getElementById('enviar').addEventListener('click', () => {
    window.api.cadastro({nome,senha}).then((result) => {
     if(result){
         localStorage.setItem('usuario', result)
-        window.location.href = 'index2.html'
+        window.location.href = 'index.html'
+        
     }
     // else{
     //     alert('Login ou senha incorretos')
     // }
 })
+    
 })
 
   

@@ -22,7 +22,7 @@ function criarJanela(){
         }
     })
 
-    janela.loadFile('index.html') 
+    janela.loadFile('logincadastro.html') 
     // janela.webContents.openDevTools()
     
     janela.removeMenu() //remover menu padrão do electron
@@ -35,10 +35,47 @@ function criarJanela(){
     
     })
 
-    // let usuarios = []
 
-    ipcMain.handle('cadastro-login', (event, login) =>{
-    //    usuarios.push(login)
+   let usuarios = []
+
+   ipcMain.handle(`cadastro1`, (event, cadastros) =>{
+        usuarios.push(cadastros)
+         console.log(cadastros)
+         if(cadastros) {
+            dialog.showMessageBox({ 
+                type: 'info',
+                title: 'Cadastro',
+                message: 'Cadastro realizado com sucesso!'
+            })
+            return true
+        }
+            else{
+                dialog.showMessageBox({
+                    type: 'error',
+                    title: 'Cadastro',
+                    message: 'Erro no cadastro!'
+                })
+            return false
+            }
+         
+        })
+
+    
+
+    ipcMain.handle('login1', (event, login) =>{
+    let nome 
+    let senha
+        
+        usuarios.forEach((elemento,indice) => { 
+            if(indice===0){
+                nome = elemento
+            }
+            if(indice=== usuarios.length-1){
+                senha = elemento
+
+            }})
+       
+    // usuarios.push(login)
         console.log(login)
 if(login.nome === "senac" && login.senha === "senac123"){  
         dialog.showMessageBox({
@@ -56,3 +93,5 @@ if(login.nome === "senac" && login.senha === "senac123"){
 
     }
     })
+        // let usuarios = []
+    
