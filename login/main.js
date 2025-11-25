@@ -1,6 +1,7 @@
 import {app, BrowserWindow, nativeTheme, ipcMain, Menu, dialog, Notification} from 'electron'
 import path from 'node:path'
 import {fileURLToPath} from 'node:url'
+import fs from 'fs'
 
 const __filename = fileURLToPath(import.meta.url) // file:////c:/senac
 const __dirname = path.dirname(__filename) // c:/senac/
@@ -29,17 +30,24 @@ function criarJanela(){
 }
 
     app.whenReady().then(() => { 
-
-            criarJanela()
+        // escreverArquivo()   
+        // lerArquivo()
+        criarJanela()
+           
+            
             
     
     })
+
+
+    const arquivo  = path.join(__dirname,'arquivo.json')
 
 
    let usuarios = []
 
    ipcMain.handle(`cadastro1`, (event, cadastros) =>{
         usuarios.push(cadastros)
+        escreverArquivo(usuarios)
          console.log(cadastros)
          if(cadastros) {
             dialog.showMessageBox({ 
@@ -95,6 +103,30 @@ function criarJanela(){
 
 
         })
+               
+                
+        function lerArquivo(){
+            try{
+            let conteudo = fs.readFileSync(arquivo,'utf-8') //
+            // dados2.push ( JSON.parse(conteudo))// converte para java script
+            dados2 = JSON.parse(conteudo) 
+            console.log('Caminho: ',JSON.parse(conteudo),'\n')
+            console.log('conteudo: ',usuarios)
+            console.log('Caminho: ',arquivo,'\n')
+            console.log('conteudo: ',conteudo)
+        
+            }catch(err){
+                console.error(err)
+            }}
+
+
+        function escreverArquivo(conteudo){
+            try{
+                    fs.writeFileSync(arquivo,JSON.stringify(conteudo , null,2),'utf-8')
+                    // fs.writeFileSync(arquivo,'Escrevendo no arquivo...','utf-8')
+        }catch(err){
+            console.error(err)
+        }}
 
 
 

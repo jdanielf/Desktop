@@ -1,0 +1,20 @@
+[
+  {
+    "nome": "daniel",
+    "cpf": "231",
+    "telefone": "213",
+    "bairro": "213",
+    "rua": "213",
+    "numero": "213",
+    "senha": "123456"
+  },
+  {
+    "nome": "Aparecida",
+    "cpf": "546",
+    "telefone": "546",
+    "bairro": "546",
+    "rua": "546",
+    "numero": "546",
+    "senha": "456789"
+  }
+]
