@@ -16,5 +16,23 @@
     "rua": "546",
     "numero": "546",
     "senha": "456789"
+  },
+  {
+    "nome": "lenildo",
+    "cpf": "123",
+    "telefone": "132",
+    "bairro": "123",
+    "rua": "13",
+    "numero": "213",
+    "senha": "456789"
+  },
+  {
+    "nome": "emanuel",
+    "cpf": "123",
+    "telefone": "132",
+    "bairro": "132",
+    "rua": "132",
+    "numero": "132",
+    "senha": "123789"
   }
 ]

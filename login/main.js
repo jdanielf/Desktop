@@ -31,11 +31,9 @@ function criarJanela(){
 
     app.whenReady().then(() => { 
         // escreverArquivo()   
-        // lerArquivo()
+        lerArquivo()
         criarJanela()
-           
-            
-            
+             
     
     })
 
@@ -43,7 +41,7 @@ function criarJanela(){
     const arquivo  = path.join(__dirname,'arquivo.json')
 
 
-   let usuarios = []
+   let usuarios = null
 
    ipcMain.handle(`cadastro1`, (event, cadastros) =>{
         usuarios.push(cadastros)
@@ -70,30 +68,13 @@ function criarJanela(){
 
     
 
-    // ipcMain.handle('login1', (event, login) =>{
-    // let nome 
-    // let senha0
-        
-    //     usuarios.forEach((elemento,indice) => { 
-    //         if(indice===0){
-    //             nome = elemento
-    //             if(indice=== usuarios.length-1){
-    //             senha0 = elemento
-                   
-    //             }
-    //         console.log(nome)
-            
-    //         }
-         
-    //         })
-    //         return nome
-    //     })
+   
 
 
         ipcMain.handle('login1', (event, valida) =>{
             
             let nome0  = usuarios.find((elemento) => elemento.nome === valida.login && elemento.senha === valida.senha)
-            console.log(nome0)
+            // console.log(nome0)
             if(nome0){ 
                 // console.log(valida.login)
                 return valida.login      
@@ -109,13 +90,14 @@ function criarJanela(){
             try{
             let conteudo = fs.readFileSync(arquivo,'utf-8') //
             // dados2.push ( JSON.parse(conteudo))// converte para java script
-            dados2 = JSON.parse(conteudo) 
+            usuarios = JSON.parse(conteudo) 
             console.log('Caminho: ',JSON.parse(conteudo),'\n')
             console.log('conteudo: ',usuarios)
             console.log('Caminho: ',arquivo,'\n')
             console.log('conteudo: ',conteudo)
         
             }catch(err){
+                usuarios = []
                 console.error(err)
             }}
 
@@ -129,29 +111,20 @@ function criarJanela(){
         }}
 
 
-
-
+    //   function carregarUsuarios(){
+    //     try{
+    //         let conteudo = fs.readFileSync(arquivo,'utf-8') //
+    //         usuarios = JSON.parse(conteudo) 
+    //         console.log('Usuarios carregados: ',usuarios)}
+    //     catch(err){
+    //         console.error(err)
+      
+      
+    //     }
+    // }
 
 
 
    
-    // usuarios.push(login)
-//         console.log(login)
-// if(login.nome === "senac" && login.senha === "senac123"){  
-//         dialog.showMessageBox({
-//             type: 'info',
-//             title: 'Login',
-//             message: 'Login realizado com sucesso!'
-//         })
-//     return login.nome
-//     }else{
-//     dialog.showMessageBox({
-//         type: 'error',
-//         title: 'Login',
-//         message: 'Login ou senha incorretos!'
-//     })
 
-//     }
-//     })
-        // let usuarios = []
     

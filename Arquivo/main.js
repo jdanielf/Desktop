@@ -1,4 +1,4 @@
-import{app, BrowserWindow}from'electron'
+import{app, BrowserWindow, dialog, ipcMain}from'electron'
 import path from'path'
 import{fileURLToPath}from'url'
 import fs from 'fs'
@@ -30,48 +30,97 @@ const criarJanela=()=>{
 }
 
 app.whenReady().then(()=>{
-    lerArquivo()
+    // lerArquivo()
     //  escreverArquivo()
     criarJanela()   
    
 })
 
-const arquivo  = path.join(__dirname,'arquivo.json')
+let arquivo  = path.join(__dirname,'arquivo.txt')
 
-let dados = []
-
-function escreverArquivo(){
+function escreverArquivo(conteudo){
     try{
-        let pessoa = {nome:'Daniel', cpf:'101.010.110-10'}
-        dados.push(pessoa)
-            fs.writeFileSync(arquivo,JSON.stringify(dados , null,2),'utf-8')
-            // fs.writeFileSync(arquivo,'Escrevendo no arquivo...','utf-8')
+            fs.writeFileSync(arquivo,conteudo ,'utf-8') // esceve no arquivo
 }catch(err){
     console.error(err)
 }}
 
-// function lerArquivo(){
-//     try{
-//     let conteudo = fs.readFileSync(arquivo,'utf-8')
-//     console.log('Caminho: ',arquivo,'\n')
-//     console.log('conteudo: ',conteudo)
-//     }catch(err){
-//         console.error(err)
-//     }
-// }
-
-let dados2 = []
-
-function lerArquivo(){
+async function lerArquivo(){
+   let resultado = await dialog.showOpenDialog({
+        title: "Abrir arquivo",
+        defaultPath: "arquivo.txt",
+        filters:[{name:'Texto', extensions:['txt','doc']}],
+        properties: ['openFile']
+    })
+    if(resultado.canceled){
+        return
+    }
+    arquivo = resultado.filePaths[0]
+    
     try{
     let conteudo = fs.readFileSync(arquivo,'utf-8') //
-    // dados2.push ( JSON.parse(conteudo))// converte para java script
-    dados2 = JSON.parse(conteudo) 
-    console.log('Caminho: ',JSON.parse(conteudo),'\n')
-    console.log('conteudo: ',dados2)
-    console.log('Caminho: ',arquivo,'\n')
-    console.log('conteudo: ',conteudo)
-
+    return conteudo
     }catch(err){
         console.error(err)
-    }}
+    }
+}    
+
+ipcMain.handle('salvar-arquivo',(event, texto)=>{
+    console.log('Texto:', texto)
+    escreverArquivo(texto)
+    return arquivo
+
+    
+})
+
+ipcMain.handle('abrir-arquivo',(event)=>{
+    let conteudo = lerArquivo()
+    return conteudo
+})
+
+
+
+
+
+
+
+
+
+
+// let dados = []
+
+// function escreverArquivo(conteudo){
+//     try{
+//         let pessoa = {nome:'Daniel', cpf:'101.010.110-10'}
+//         dados.push(pessoa)
+//             fs.writeFileSync(arquivo,JSON.stringify(dados , null,2),'utf-8')
+//             // fs.writeFileSync(arquivo,'Escrevendo no arquivo...','utf-8')
+// }catch(err){
+//     console.error(err)
+// }}
+
+// // function lerArquivo(){
+// //     try{
+// //     let conteudo = fs.readFileSync(arquivo,'utf-8')
+// //     console.log('Caminho: ',arquivo,'\n')
+// //     console.log('conteudo: ',conteudo)
+// //     }catch(err){
+// //         console.error(err)
+// //     }
+// // }
+
+// let dados2 = []
+
+// function lerArquivo(){
+//     try{
+//     let conteudo = fs.readFileSync(arquivo,'utf-8') //
+//     // dados2.push ( JSON.parse(conteudo))// converte para java script
+//     dados2 = JSON.parse(conteudo) 
+//     console.log('Caminho: ',JSON.parse(conteudo),'\n')
+//     console.log('conteudo: ',dados2)
+//     console.log('Caminho: ',arquivo,'\n')
+//     console.log('conteudo: ',conteudo)
+
+//     }catch(err){
+//         console.error(err)
+//     }}
