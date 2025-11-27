@@ -1,4 +1,4 @@
-import{app, BrowserWindow, dialog, ipcMain}from'electron'
+import{app, BrowserWindow, dialog, ipcMain, Menu}from'electron'
 import path from'path'
 import{fileURLToPath}from'url'
 import fs from 'fs'
@@ -26,6 +26,7 @@ const criarJanela=()=>{
 
     janela.removeMenu()
     // janela.webContents.openDevTools()
+    Menu.setApplicationMenu(Menu.buildFromTemplate(menu)) 
     janela.loadFile(path.join(__dirname,'index.html'))
 }
 
@@ -77,6 +78,44 @@ ipcMain.handle('abrir-arquivo',(event)=>{
     let conteudo = lerArquivo()
     return conteudo
 })
+
+ipcMain.handle('salvar-como-arquivo', async (event, texto) => {
+     dialog.showSaveDialog({
+        title: "Salvar arquivo como",
+        defaultPath: "arquivo",
+        filters:[{name:'Texto', extensions:['txt','doc']}],
+       
+
+  }).then((resultado) => {
+        if (resultado.canceled) return
+        arquivo = resultado.filePath
+        escreverArquivo(texto)
+  })
+     return arquivo
+
+
+
+})
+
+let menu = [
+    {label: 'Arquivo',
+    submenu:[
+        {label: "Novo",
+        submenu:[    
+        
+        {label: 'Nova Janela', click: () => {criarJanela()}, },
+        {label:"Novo Arquivo",  click: () => {
+            janela.webContents.send('novo-arquivo')
+        }},
+        {type: 'separator'},
+        
+
+     ]},
+    {label: 'Sair', role: 'quit' }]},
+    {label: 'Editar'},
+    {label: 'Exibir'},
+
+    ]
 
 
 
