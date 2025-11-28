@@ -155,7 +155,7 @@ let menu = [
             { type: 'separator' },
             { label: 'Copiar', role: 'copy' },
             { label: 'Colar', role: 'paste' },
-            { label: 'Recortar', role: 'cut' },
+            { label: 'Recortar', role: 'cut',icon: path.join(__dirname, 'corte.png') },
             { label: "limpar Tudo", role: 'delete' },
             { label: 'Selecionar Tudo', role: 'selectAll' },
             { type: 'separator' },]
