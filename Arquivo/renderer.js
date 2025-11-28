@@ -22,3 +22,15 @@ function salvarComo() {
 window.api.novo(() => {
 texto.value = ""
 })
+
+window.api.abrirArquivo(() => {
+   abrirArquivo()
+})
+
+window.api.salvarArquivo(() => {
+    salvarArquivo()
+})
+
+window.api.salvarComoArquivo(() => {
+    salvarComo()
+})
