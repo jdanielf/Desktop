@@ -20,11 +20,11 @@ function salvarComo() {
 }
 
 window.api.novo(() => {
-texto.value = ""
+ texto.value = ""
 })
 
 window.api.abrirArquivo(() => {
-   abrirArquivo()
+    abrirArquivo()
 })
 
 window.api.salvarArquivo(() => {
