@@ -27,10 +27,15 @@ const criarJanela=()=>{
     // janela.removeMenu()
     // janela.webContents.openDevTools()
     janela.loadFile(path.join(__dirname,'index.html'))
-    Menu.setApplicationMenu(Menu.buildFromTemplate(menu)) 
+    Menu.setApplicationMenu(Menu.buildFromTemplate(menu))
+    
+  
+      janela.webContents.on("context-menu", ()=> {
+          Menu.buildFromTemplate(menu).popup({window:janela})})
 
     
 }
+
 
 app.whenReady().then(()=>{
     // lerArquivo()
@@ -39,7 +44,8 @@ app.whenReady().then(()=>{
    
 })
 
-let arquivo  = path.join(__dirname,'arquivo.txt')
+// let arquivo  = path.join(__dirname,'arquivo.txt')
+let arquivo = null
 
 function escreverArquivo(conteudo){
     try{
@@ -95,8 +101,8 @@ ipcMain.handle('salvar-como-arquivo', async (event, texto) => {
   })
      return arquivo
 
-
-
+  
+   
 })
 
 let menu = [
@@ -119,7 +125,10 @@ let menu = [
      {label: 'Salvar', 
         submenu:[
             {label:"Salvar", click: () => {
-                janela.webContents.send('salvar-arquivo')
+                if(!arquivo){
+                    janela.webContents.send('salvar-como-arquivo')
+                 }else{
+                janela.webContents.send('salvar-arquivo')}
             }},
             {label:"Salvar Como", click: () => {
                 janela.webContents.send('salvar-como-arquivo')
