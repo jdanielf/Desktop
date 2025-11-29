@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minha Tarefa</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f9f9f9;
+        margin: 20px;
+    }
+    p {
+        font-size: 24px;
+        font-weight: bold;
+    }
+    input, select, textarea {
+        width: 100%;
+        padding: 8px;
+        margin: 5px 0 15px 0;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+    button {
+        background-color: #5cb85c;
+        color: white;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+    button:hover {
+        background-color: #4cae4c;
+    }
+</style>
+</head>
+<body>
+    <p>Minha Tarefa</p>
+    Título:<input type="text" name="" id="titulo"><br><br>
+    Prioridade:
+    <select name="" id="prioridade">
+        <option value="baixa">Baixa</option>
+        <option value="media">Média</option>
+        <option value="alta">Alta</option>
+    </select><br><br>    
+        Data do lembrete:<input type="date" name="" id="data"><br><br>
+    conteúdo:<br>
+    <textarea name="" id="conteudo" cols="30" rows="10"></textarea><br><br>
+    <button id="salvarTarefa">Salvar Tarefa</button>
+    <script src="rendertarefas.js">
+     
+
+    </script>
+</body>
+</html>
