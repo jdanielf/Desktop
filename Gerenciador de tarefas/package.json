@@ -5,9 +5,8 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "electron main.js",
-    "dev": "electronmon .",
-    "make": "electron-forge make"
+    "start": "npx electron",
+    "dev": "electronmon ."
   },
   "keywords": [],
   "author": "daniel",
@@ -16,6 +15,8 @@
     "electron": "^39.1.2",
     "electronmon": "^2.0.4"
   },
+  "devDependencies": {},
   "description": ""
+  
   
 }

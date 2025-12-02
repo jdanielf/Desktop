@@ -1,14 +1,8 @@
 [
   {
     "titulo": "daniel",
-    "prioridade": "media",
-    "data": "2025-12-01",
-    "conteudo": "teste tes tes"
-  },
-  {
-    "titulo": "lenildo",
-    "prioridade": "alta",
-    "data": "2025-12-02",
-    "conteudo": "teste"
+    "prioridade": "baixa",
+    "data": "2025-12-31",
+    "conteudo": "teste nada"
   }
 ]

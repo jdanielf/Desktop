@@ -20,19 +20,20 @@ window.api.tarefa(tarefa).then((result) => {
 })
   
     
-
+document.getElementById('buscarBtn').addEventListener('click', () => {
+   let login = document.getElementById("tituloBusca").value
 
 window.api.tituloValidacao({titulo}).then((result) => {
 
     if(result){
         localStorage.setItem('usuario', result)
-        window.location.href = 'index2.html'
+        window.location.href = 'terfa.html'
         
     }
     else{
-        alert('Login ou senha incorretos')
+        alert('Título incorreto')
     }
 })
-
+})
 
 })
