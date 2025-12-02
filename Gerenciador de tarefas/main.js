@@ -51,9 +51,39 @@ ipcMain.handle("cadastroTarefa", (event ,tarefa1)=>{
     texto.push(tarefa1)
     escreverArquivo(texto)
     console.log(texto)
+    return tarefa1
 
 })
 
+ipcMain.handle('login1', (event, valida) =>{
+            
+            let nome0  = usuarios.find((elemento) => elemento.nome === valida.login && elemento.senha === valida.senha)
+            // console.log(nome0)
+            if(nome0){ 
+                // console.log(valida.login)
+                return valida.login      
+            }else{
+                return null
+            }
+
+
+        })
+ipcMain.handle('buscaTitulo', (event, titulo) =>{
+            
+            let titulo1  = texto.find((elemento) => elemento.titu === titulo.login)
+            console.log(titulo1)
+            if(titulo){ 
+                console.log(elemento.titu)
+                return elemento.titu     
+            }else{
+                return null
+            }
+
+
+        })
+
+
+      
 
 
 
