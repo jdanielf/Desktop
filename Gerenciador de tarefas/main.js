@@ -59,10 +59,13 @@ ipcMain.handle("cadastroTarefa", (event ,tarefa1)=>{
 ipcMain.handle('buscaTitulo', (event, valida) =>{
             
             let titulo0  = texto.find((elemento) => elemento.titulo === valida.tituloBusca)
-            
+                      
             if(titulo0){ 
                 
-                return valida.tituloBusca    
+
+
+
+                return valida   
             }else{
                 return null
             }

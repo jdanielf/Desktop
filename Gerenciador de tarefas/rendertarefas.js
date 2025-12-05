@@ -18,16 +18,22 @@ window.api.tarefa(tarefa).then((result) => {
 
   
 })
-  
-    
+
 document.getElementById('buscarBtn').addEventListener('click', () => {
    let login = document.getElementById("tituloBusca").value
 
 window.api.tituloValidacao({titulo}).then((result) => {
 
     if(result){
-        localStorage.setItem('usuario', result)
-        window.location.href = 'terfa.html'
+        window.api.tarefa(tarefa).then((result) => {
+    
+    titulo.value = titulo.value
+   prioridade.value = prioridade.value
+    data.value= data.value
+    conteudo.value = conteudo.value
+
+  
+})
         
     }
     else{
@@ -35,5 +41,26 @@ window.api.tituloValidacao({titulo}).then((result) => {
     }
 })
 })
+
+
+   
+
+
+
+// document.getElementById('buscarBtn').addEventListener('click', () => {
+//    let login = document.getElementById("tituloBusca").value
+
+// window.api.tituloValidacao({titulo}).then((result) => {
+
+//     if(result){
+//         localStorage.setItem('usuario', result)
+//         window.location.href = 'terfa.html'
+        
+//     }
+//     else{
+//         alert('Título incorreto')
+//     }
+// })
+// })
 
 })
